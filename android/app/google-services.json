@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "328512272187",
+    "project_id": "passpilot-6a9e9",
+    "storage_bucket": "passpilot-6a9e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328512272187:android:146f530b20207ada44691e",
+        "android_client_info": {
+          "package_name": "com.example.passpilot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "328512272187-ubafp3nq5oite20502ul95q8bhs2if3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASddvmutZsXPm9Src1aO4Mrn6x6qCkgWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "328512272187-ubafp3nq5oite20502ul95q8bhs2if3i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
