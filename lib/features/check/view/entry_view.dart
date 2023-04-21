@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:passpilot/common/rounded_small_button.dart';
 import 'package:passpilot/constants/text_constants.dart';
+import 'package:passpilot/features/check/controller/check_controller.dart';
 import 'package:passpilot/features/check/widgets/identification_field.dart';
+import 'package:passpilot/features/check/widgets/user_data.dart';
 
-class EntryView extends StatefulWidget {
+class EntryView extends ConsumerStatefulWidget {
   const EntryView({super.key});
 
   @override
-  State<EntryView> createState() => _EntryViewState();
+  ConsumerState<EntryView> createState() => _EntryViewState();
 }
 
-class _EntryViewState extends State<EntryView> {
+class _EntryViewState extends ConsumerState<EntryView> {
   final identificationController = TextEditingController();
+  String _user = '';
 
   @override
   void dispose() {
@@ -19,29 +23,53 @@ class _EntryViewState extends State<EntryView> {
     super.dispose();
   }
 
+  void onCheck() {
+    var user = ref.read(checkControllerProvider).check(
+          idNumber: identificationController.text,
+          context: context,
+        );
+    user.then(
+      (value) {
+        setState(() {
+          _user = value;
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: ListView(
+        shrinkWrap: true,
         children: [
-          const SizedBox(height: 30),
-          const Text(
-            'Entry',
-            style: TextConstants.kSubTitleStyleText,
-          ),
-          const SizedBox(height: 45),
-          IdentificateField(
-            controller: identificationController,
-            hintText: 'Identification Number',
-          ),
-          const SizedBox(height: 20),
-          Align(
-            alignment: Alignment.topRight,
-            child: RoundedSmallButton(
-              onTap: () {},
-              label: 'Done',
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 30),
+              const Text(
+                'Entry',
+                style: TextConstants.kSubTitleStyleText,
+              ),
+              const SizedBox(height: 45),
+              IdentificateField(
+                controller: identificationController,
+                hintText: 'Identification Number',
+              ),
+              const SizedBox(height: 20),
+              Align(
+                alignment: Alignment.topRight,
+                child: RoundedSmallButton(
+                  onTap: onCheck,
+                  label: 'Done',
+                ),
+              ),
+              if (_user != '')
+                UserData(
+                  userName: _user,
+                  idNumber: identificationController.text,
+                ),
+            ],
           ),
         ],
       ),
