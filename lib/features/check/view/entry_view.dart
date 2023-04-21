@@ -14,7 +14,7 @@ class EntryView extends ConsumerStatefulWidget {
 }
 
 class _EntryViewState extends ConsumerState<EntryView> {
-  final identificationController = TextEditingController();
+  var identificationController = TextEditingController();
   String _user = '';
 
   @override
@@ -32,6 +32,9 @@ class _EntryViewState extends ConsumerState<EntryView> {
       (value) {
         setState(() {
           _user = value;
+          identificationController = TextEditingController(
+            text: '',
+          );
         });
       },
     );
