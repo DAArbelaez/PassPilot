@@ -16,6 +16,7 @@ class EntryView extends ConsumerStatefulWidget {
 class _EntryViewState extends ConsumerState<EntryView> {
   var identificationController = TextEditingController();
   String _user = '';
+  String _userId = '';
 
   @override
   void dispose() {
@@ -32,6 +33,7 @@ class _EntryViewState extends ConsumerState<EntryView> {
       (value) {
         setState(() {
           _user = value;
+          _userId = identificationController.text;
           identificationController = TextEditingController(
             text: '',
           );
@@ -70,7 +72,7 @@ class _EntryViewState extends ConsumerState<EntryView> {
               if (_user != '')
                 UserData(
                   userName: _user,
-                  idNumber: identificationController.text,
+                  idNumber: _userId,
                 ),
             ],
           ),
