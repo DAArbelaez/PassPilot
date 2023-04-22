@@ -25,12 +25,10 @@ class UserAPI {
         )
         .get()
         .then((value) {
-      print('Successfully completed');
       Map<String, dynamic> user = {};
       for (var docSnapshot in value.docs) {
         user.addAll(docSnapshot.data());
       }
-      print(user.values);
       return user;
     }, onError: (e) {
       return null;
@@ -67,7 +65,6 @@ class UserAPI {
           .update({'checkOutDate': checkOutTime});
 
       final userData = await getUserData(idNumber: idNumber);
-      print(userData['name']);
       return userData['name'];
     }
     return '';
