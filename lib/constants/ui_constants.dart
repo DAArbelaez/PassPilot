@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:passpilot/constants/text_constants.dart';
 import 'package:passpilot/features/check/view/entry_view.dart';
+import 'package:passpilot/features/check/view/exit_view.dart';
 import 'package:passpilot/theme/pallette.dart';
 
 class UIConstants {
@@ -36,11 +37,6 @@ class UIConstants {
 
   static const List<Widget> bottomTabBarPages = [
     EntryView(),
-    Text(
-      'Exit Screen',
-      style: TextStyle(
-        color: Colors.white,
-      ),
-    ),
+    ExitView(),
   ];
 }
