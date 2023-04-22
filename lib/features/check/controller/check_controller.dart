@@ -1,19 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:passpilot/apis/log_api.dart';
 import 'package:passpilot/apis/user_api.dart';
 import 'package:passpilot/core/utils.dart';
 import 'package:passpilot/models/log_model.dart';
 
 final checkControllerProvider = Provider((ref) {
-  return CheckController(userAPI: ref.watch(userAPIProvider));
+  return CheckController(
+    userAPI: ref.watch(userAPIProvider),
+    logAPI: ref.watch(logAPIProvider),
+  );
+});
+
+final getLogsProvider = FutureProvider((ref) async {
+  final checkController = ref.watch(checkControllerProvider);
+  return checkController.getLogs();
 });
 
 class CheckController extends StateNotifier<bool> {
+  final LogAPI _logAPI;
   final UserAPI _userAPI;
   CheckController({
     required UserAPI userAPI,
+    required LogAPI logAPI,
   })  : _userAPI = userAPI,
+        _logAPI = logAPI,
         super(false);
 
   Future<String> checkIn({
@@ -68,5 +80,10 @@ class CheckController extends StateNotifier<bool> {
     } else {
       return res;
     }
+  }
+
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getLogs() async {
+    final logsList = await _logAPI.getLogs();
+    return logsList;
   }
 }
