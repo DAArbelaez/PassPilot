@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:passpilot/constants/text_constants.dart';
 import 'package:passpilot/features/check/view/entry_view.dart';
 import 'package:passpilot/features/check/view/exit_view.dart';
+import 'package:passpilot/features/check/view/logs_list_view.dart';
 import 'package:passpilot/theme/pallette.dart';
 
 class UIConstants {
@@ -29,6 +30,9 @@ class UIConstants {
           icon: Icon(Icons.login),
         ),
         BottomNavigationBarItem(
+          icon: Icon(Icons.checklist_outlined),
+        ),
+        BottomNavigationBarItem(
           icon: Icon(Icons.logout),
         ),
       ],
@@ -37,6 +41,7 @@ class UIConstants {
 
   static const List<Widget> bottomTabBarPages = [
     EntryView(),
+    LogsList(),
     ExitView(),
   ];
 }
