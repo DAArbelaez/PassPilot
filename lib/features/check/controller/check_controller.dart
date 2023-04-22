@@ -38,7 +38,6 @@ class CheckController extends StateNotifier<bool> {
     );
     state = false;
     if (res.isEmpty) {
-      print("User doesn't exist");
       // ignore: use_build_context_synchronously
       showSnackBar(context, "The user doesn't exist");
       return '';
@@ -73,7 +72,6 @@ class CheckController extends StateNotifier<bool> {
     state = false;
 
     if (res.isEmpty) {
-      print("User doesn't exist");
       // ignore: use_build_context_synchronously
       showSnackBar(context, "The user doesn't exist");
       return '';
