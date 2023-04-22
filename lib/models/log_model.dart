@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 @immutable
 class LogModel {
   final Timestamp checkInDate;
-  final Timestamp checkOutDate;
+  final Timestamp? checkOutDate;
   final String uid;
   const LogModel({
     required this.checkInDate,

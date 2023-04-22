@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:passpilot/common/rounded_small_button.dart';
 import 'package:passpilot/constants/text_constants.dart';
+import 'package:passpilot/core/utils.dart';
 import 'package:passpilot/features/check/controller/check_controller.dart';
 import 'package:passpilot/features/check/widgets/identification_field.dart';
 import 'package:passpilot/features/check/widgets/user_data.dart';
 
-class EntryView extends ConsumerStatefulWidget {
-  const EntryView({super.key});
+class ExitView extends ConsumerStatefulWidget {
+  const ExitView({super.key});
 
   @override
-  ConsumerState<EntryView> createState() => _EntryViewState();
+  ConsumerState<ExitView> createState() => _EntryViewState();
 }
 
-class _EntryViewState extends ConsumerState<EntryView> {
+class _EntryViewState extends ConsumerState<ExitView> {
   var identificationController = TextEditingController();
   String _user = '';
   String _userId = '';
@@ -25,7 +26,17 @@ class _EntryViewState extends ConsumerState<EntryView> {
   }
 
   void onCheck() {
-    var user = ref.read(checkControllerProvider).checkIn(
+    if (_userId == identificationController.text) {
+      showSnackBar(context, "You can't update the date again");
+      setState(() {
+        _userId = identificationController.text;
+        identificationController = TextEditingController(
+          text: '',
+        );
+      });
+      return;
+    }
+    var user = ref.read(checkControllerProvider).checkOut(
           idNumber: identificationController.text,
           context: context,
         );
@@ -53,7 +64,7 @@ class _EntryViewState extends ConsumerState<EntryView> {
             children: [
               const SizedBox(height: 30),
               const Text(
-                'Entry',
+                'Exit',
                 style: TextConstants.kSubTitleStyleText,
               ),
               const SizedBox(height: 45),

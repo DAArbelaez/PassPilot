@@ -37,7 +37,6 @@ dependencies:
   firebase_core: ^2.10.0
   cloud_firestore: ^4.5.2
   flutter_riverpod: ^2.3.5
-  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
