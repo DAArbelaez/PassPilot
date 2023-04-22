@@ -26,6 +26,15 @@ class CheckController extends StateNotifier<bool> {
     required LogAPI logAPI,
   })  : _userAPI = userAPI,
         _logAPI = logAPI,
+
+  return CheckController(userAPI: ref.watch(userAPIProvider));
+});
+
+class CheckController extends StateNotifier<bool> {
+  final UserAPI _userAPI;
+  CheckController({
+    required UserAPI userAPI,
+  })  : _userAPI = userAPI,
         super(false);
 
   Future<String> checkIn({
@@ -86,4 +95,5 @@ class CheckController extends StateNotifier<bool> {
     final logsList = await _logAPI.getLogs();
     return logsList;
   }
+
 }

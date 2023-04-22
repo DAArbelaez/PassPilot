@@ -30,6 +30,7 @@ class UIConstants {
           icon: Icon(Icons.login),
         ),
         BottomNavigationBarItem(
+
           icon: Icon(Icons.checklist_outlined),
         ),
         BottomNavigationBarItem(
